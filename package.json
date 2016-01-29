@@ -1,0 +1,25 @@
+{
+  "name": "slacktivist",
+  "version": "0.1.0",
+  "description": "Slack AMQP Bridge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/williamhogman/slacktivist.git"
+  },
+  "author": "William Rudenmalm",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/williamhogman/slacktivist/issues"
+  },
+  "homepage": "https://github.com/williamhogman/slacktivist#readme",
+  "dependencies": {
+    "node-slack": "0.0.7"
+  },
+  "peer-dependencies": {
+    "coworkers": "^0.1.1"
+  }
+}
