@@ -18,7 +18,7 @@ function parseBodyFn(origCtx) {
   return util.testMiddleware(parseBody, origCtx)
 }
 
-describe("interpretBody", () => {
+describe("parseBody", () => {
   it("Parses json by default", () => {
     const res = parseBodyFn({ message: createMessage(JSON.stringify(test), false) })
     assert.deepStrictEqual(res.parsedMessage, test)
