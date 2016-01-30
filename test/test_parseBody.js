@@ -2,6 +2,7 @@
 
 const assert = require("assert"),
       parseBody = require("../lib/middlewares/parseBody.js"),
+      util = require("./util.js"),
       test = { yep: true }
 
 function createMessage(content, isJson) {
@@ -14,10 +15,7 @@ function createMessage(content, isJson) {
 }
 
 function parseBodyFn(origCtx) {
-  const ctx = Object.assign({}, origCtx),
-        gen = parseBody.call(ctx)
-  while(!gen.next().done) { assert.ok(true) }
-  return ctx
+  return util.testMiddleware(parseBody, origCtx)
 }
 
 describe("interpretBody", () => {
