@@ -1,0 +1,40 @@
+"use strict"
+
+const assert = require("assert"),
+      parseBody = require("../lib/middlewares/parseBody.js"),
+      test = { yep: true }
+
+function createMessage(content, isJson) {
+  return {
+    content,
+    properties: {
+      ContentType: isJson ? "application/json" : null,
+    }
+  }
+}
+
+function parseBodyFn(origCtx) {
+  const ctx = Object.assign({}, origCtx),
+        gen = parseBody.call(ctx)
+  while(!gen.next().done) { assert.ok(true) }
+  return ctx
+}
+
+describe("interpretBody", () => {
+  it("Parses json by default", () => {
+    const res = parseBodyFn({ message: createMessage(JSON.stringify(test), false) })
+    assert.deepStrictEqual(res.parsedMessage, test)
+  })
+  it("Parses json by default", () => {
+    const res = parseBodyFn({ message: createMessage("foo", false) })
+    assert.equal(res.parsedMessage, null)
+  })
+  it("Parses JSON when explicit told", () => {
+    const res = parseBodyFn({ message: createMessage(JSON.stringify(test), true)})
+    assert.deepStrictEqual(res.parsedMessage, test)
+  })
+  it("Fails on invalid JSON", () => {
+    let didFail = false
+    assert.throws(() => parseBodyFn({ message: createMessage("foo", true)}))
+  })
+})
