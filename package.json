@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/williamhogman/slacktivist#readme",
   "dependencies": {
-    "node-slack": "0.0.7"
+    "slack-node": "^0.1.7"
   },
   "peer-dependencies": {
     "coworkers": "^0.1.1"
